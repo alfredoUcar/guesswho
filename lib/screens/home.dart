@@ -1,13 +1,69 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class Home extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<String> names = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getCharactersNames().then((value) {
+      setState(() {
+        names = value;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Center(
-      child: Text('Home'),
+      child: (names.isEmpty
+          ? const CircularProgressIndicator()
+          : Characters(names: names)),
     ));
+  }
+
+  Future<List<String>> getCharactersNames() async {
+    final Map<String, dynamic> manifest =
+        json.decode(await rootBundle.loadString('AssetManifest.json'));
+
+    var images = manifest.keys
+        .where((element) => element.startsWith('lib/assets/characters/'));
+
+    var names = images.map((element) {
+      return element.split("/").last.split(".").first;
+    }).toList();
+
+    return names;
+  }
+}
+
+class Characters extends StatelessWidget {
+  const Characters({
+    Key? key,
+    required this.names,
+  }) : super(key: key);
+
+  final List<String> names;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+        crossAxisCount: 4,
+        children: List.generate(
+            names.length,
+            (index) => Image(
+                image: AssetImage(
+                    "lib/assets/characters/${names.elementAt(index)}.png"))));
   }
 }
