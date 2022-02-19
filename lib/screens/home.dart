@@ -56,22 +56,24 @@ class Characters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-        crossAxisCount: 3,
-        children: List.generate(names.length, (index) {
-          return GridTile(
-            footer: Text(
-              names.elementAt(index),
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 20),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Image(
-                  image: AssetImage(
-                      "lib/assets/characters/${names.elementAt(index)}.png")),
-            ),
-          );
-        }));
+    return OrientationBuilder(
+      builder: (context, orientation) => GridView.count(
+          crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
+          children: List.generate(names.length, (index) {
+            return GridTile(
+              footer: Text(
+                names.elementAt(index),
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 20),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Image(
+                    image: AssetImage(
+                        "lib/assets/characters/${names.elementAt(index)}.png")),
+              ),
+            );
+          })),
+    );
   }
 }
