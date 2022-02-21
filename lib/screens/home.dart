@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey.shade100,
         body: (names.isEmpty
             ? const CircularProgressIndicator()
             : Column(
@@ -75,41 +76,47 @@ class Characters extends StatelessWidget {
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
           children: List.generate(names.length, (index) {
-            return GridTile(
-              footer: Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Text(
-                      names.elementAt(index),
-                      style: TextStyle(
-                        fontSize: 16,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 3
-                          ..color = Colors.black,
+            return InkWell(
+              onTap: () {
+                print("tap on ${names.elementAt(index)}");
+              },
+              child: GridTile(
+                footer: Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Text(
+                        names.elementAt(index),
+                        style: TextStyle(
+                          fontSize: 16,
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 3
+                            ..color = Colors.black,
+                        ),
                       ),
-                    ),
-                    Text(
-                      names.elementAt(index),
-                      style: TextStyle(
-                        fontSize: 16,
-                        foreground: Paint()..color = Colors.white,
+                      Text(
+                        names.elementAt(index),
+                        style: TextStyle(
+                          fontSize: 16,
+                          foreground: Paint()..color = Colors.white,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              child: Container(
-                padding: const EdgeInsets.only(bottom: 24, top: 5),
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2),
-                  borderRadius: BorderRadius.circular(5),
+                child: Container(
+                  padding: const EdgeInsets.only(bottom: 24, top: 5),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2),
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white,
+                  ),
+                  child: Image(
+                      image: AssetImage(
+                          "lib/assets/characters/${names.elementAt(index)}.png")),
                 ),
-                child: Image(
-                    image: AssetImage(
-                        "lib/assets/characters/${names.elementAt(index)}.png")),
               ),
             );
           })),
