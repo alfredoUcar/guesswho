@@ -28,7 +28,19 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: (names.isEmpty
             ? const CircularProgressIndicator()
-            : Characters(names: names)));
+            : Column(
+                children: [
+                  const Flexible(
+                    flex: 2,
+                    child: Image(
+                        image: AssetImage('lib/assets/wide_text_logo.png')),
+                  ),
+                  Flexible(
+                    flex: 8,
+                    child: Characters(names: names),
+                  ),
+                ],
+              )));
   }
 
   Future<List<String>> getCharactersNames() async {
@@ -58,16 +70,43 @@ class Characters extends StatelessWidget {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) => GridView.count(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
           children: List.generate(names.length, (index) {
             return GridTile(
-              footer: Text(
-                names.elementAt(index),
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 20),
+              footer: Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Text(
+                      names.elementAt(index),
+                      style: TextStyle(
+                        fontSize: 16,
+                        foreground: Paint()
+                          ..style = PaintingStyle.stroke
+                          ..strokeWidth = 3
+                          ..color = Colors.black,
+                      ),
+                    ),
+                    Text(
+                      names.elementAt(index),
+                      style: TextStyle(
+                        fontSize: 16,
+                        foreground: Paint()..color = Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
+              child: Container(
+                padding: const EdgeInsets.only(bottom: 24, top: 5),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 2),
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 child: Image(
                     image: AssetImage(
                         "lib/assets/characters/${names.elementAt(index)}.png")),
