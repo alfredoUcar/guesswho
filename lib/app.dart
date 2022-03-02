@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guesswho/screens/character_detail.dart';
 import 'package:guesswho/screens/character_selection.dart';
 import 'package:guesswho/screens/home.dart';
 import 'package:guesswho/states/game.dart';
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
         routes: {
           Home.routeName: (context) => const Home(),
           CharacterSelection.routeName: (context) => const CharacterSelection(),
+          CharacterDetail.routeName: (context) => const CharacterDetail(),
         },
       ),
     );
