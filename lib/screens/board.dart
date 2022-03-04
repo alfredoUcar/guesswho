@@ -42,6 +42,7 @@ class _BoardState extends State<Board> {
                     child: GameCharacters(
                       names: names,
                       onTap: (String name) {},
+                      onLongPress: (String name) {},
                     ),
                   ),
                 ],
