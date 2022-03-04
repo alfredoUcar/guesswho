@@ -18,8 +18,14 @@ class CharacterSelection extends StatelessWidget {
         floatingActionButton: Visibility(
           visible: game.selectedCharacter != null,
           child: FloatingActionButton(
-            child: const Icon(Icons.play_arrow),
-            onPressed: () {},
+            child: Icon(game.hasStarted() ? Icons.stop : Icons.play_arrow),
+            onPressed: () {
+              if (game.hasStarted()) {
+                game.end();
+              } else {
+                game.start();
+              }
+            },
           ),
         ),
         body: game.characters.isEmpty
