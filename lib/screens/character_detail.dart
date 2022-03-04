@@ -14,7 +14,7 @@ class CharacterDetail extends StatelessWidget {
     return Consumer<Game>(
       builder: (context, game, child) => Scaffold(
         backgroundColor: Colors.grey.shade100,
-        body: game.selectedCharacter == null
+        body: game.focusedCharacter == null
             ? const Center(child: CircularProgressIndicator())
             : Column(
                 children: [
@@ -26,10 +26,10 @@ class CharacterDetail extends StatelessWidget {
                   Expanded(
                     flex: 8,
                     child: Hero(
-                      tag: game.selectedCharacter as String,
+                      tag: game.focusedCharacter as String,
                       child: Image(
                           image: AssetImage(
-                              "lib/assets/characters/${game.selectedCharacter}.png")),
+                              "lib/assets/characters/${game.focusedCharacter}.png")),
                     ),
                   ),
                 ],

@@ -9,12 +9,27 @@ class Game extends ChangeNotifier {
   DeviceMode? _mode;
   List<String> _characters = [];
   String? _selectedCharacter;
+  String? _focusedCharacter;
+  bool _started = false;
 
   Game() {
     getCharactersNames().then((value) {
       _characters = value;
       notifyListeners();
     });
+  }
+
+  void start() {
+    _started = true;
+    notifyListeners();
+  }
+
+  bool hasStarted() => _started;
+
+  void end() {
+    _started = false;
+    _selectedCharacter = null;
+    notifyListeners();
   }
 
   List<String> get characters => _characters;
@@ -33,6 +48,15 @@ class Game extends ChangeNotifier {
   set selectedCharacter(String? name) {
     if (_selectedCharacter != name) {
       _selectedCharacter = name;
+      notifyListeners();
+    }
+  }
+
+  String? get focusedCharacter => _focusedCharacter;
+
+  set focusedCharacter(String? name) {
+    if (_focusedCharacter != name) {
+      _focusedCharacter = name;
       notifyListeners();
     }
   }

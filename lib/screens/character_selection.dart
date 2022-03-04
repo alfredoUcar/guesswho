@@ -57,7 +57,7 @@ class CharacterSelection extends StatelessWidget {
                         }
                       },
                       onLongPress: (String name) {
-                        game.selectedCharacter = name;
+                        game.focusedCharacter = name;
                         Navigator.of(context)
                             .pushNamed(CharacterDetail.routeName);
                       },
