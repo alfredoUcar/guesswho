@@ -37,20 +37,24 @@ class CharacterSelection extends StatelessWidget {
                     child: Image(
                         image: AssetImage('lib/assets/wide_text_logo.png')),
                   ),
-                  const Flexible(
-                      child: Text(
-                    'Selecciona tu personaje',
-                    style: TextStyle(
-                      fontSize: 24,
+                  Flexible(
+                    child: Column(
+                      children: const [
+                        Text(
+                          'Selecciona tu personaje',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        ),
+                        Text(
+                          '(Mantén pulsado para ampliar)',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
                     ),
-                  )),
-                  const Flexible(
-                      child: Text(
-                    '(Mantén pulsado para ampliar)',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  )),
+                  ),
                   Flexible(
                     flex: 8,
                     child: GameCharacters(
