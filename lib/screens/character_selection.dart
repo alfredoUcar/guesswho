@@ -15,37 +15,62 @@ class CharacterSelection extends StatelessWidget {
       builder: (context, game, child) => Scaffold(
         backgroundColor: Colors.grey.shade100,
         bottomNavigationBar: BottomAppBar(
-          child: InkWell(
-            onTap: game.selectedCharacter == null
-                ? null
-                : () {
-                    if (game.hasStarted()) {
-                      game.end();
-                    } else {
-                      game.start();
-                    }
-                  },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 10),
-                Icon(
-                  game.hasStarted() ? Icons.stop : Icons.play_arrow,
-                  color: game.selectedCharacter == null
-                      ? Colors.grey
-                      : Colors.black,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              game.selectedCharacter == null
+                  ? Icon(
+                      Icons.account_circle,
+                      size: 60,
+                      color: Colors.grey.shade700,
+                    )
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(300),
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade700,
+                        ),
+                        child: Image(
+                          height: 50,
+                          image: AssetImage(
+                              "lib/assets/characters/${game.selectedCharacter}.png"),
+                        ),
+                      ),
+                    ),
+              InkWell(
+                onTap: game.selectedCharacter == null
+                    ? null
+                    : () {
+                        if (game.hasStarted()) {
+                          game.end();
+                        } else {
+                          game.start();
+                        }
+                      },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 10),
+                    Icon(
+                      game.hasStarted() ? Icons.stop : Icons.play_arrow,
+                      color: game.selectedCharacter == null
+                          ? Colors.grey
+                          : Colors.black,
+                    ),
+                    Text(
+                      game.hasStarted() ? 'Finalizar' : 'Empezar',
+                      style: TextStyle(
+                        color: game.selectedCharacter == null
+                            ? Colors.grey
+                            : Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
                 ),
-                Text(
-                  game.hasStarted() ? 'Finalizar' : 'Empezar',
-                  style: TextStyle(
-                    color: game.selectedCharacter == null
-                        ? Colors.grey
-                        : Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 10),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         body: game.characters.isEmpty
