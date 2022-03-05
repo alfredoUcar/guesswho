@@ -21,6 +21,7 @@ class Game extends ChangeNotifier {
 
   void start() {
     _started = true;
+    _focusedCharacter = null;
     notifyListeners();
   }
 
@@ -29,6 +30,7 @@ class Game extends ChangeNotifier {
   void end() {
     _started = false;
     _selectedCharacter = null;
+    _focusedCharacter = null;
     notifyListeners();
   }
 
