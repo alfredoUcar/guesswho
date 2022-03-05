@@ -14,18 +14,38 @@ class CharacterSelection extends StatelessWidget {
     return Consumer<Game>(
       builder: (context, game, child) => Scaffold(
         backgroundColor: Colors.grey.shade100,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Visibility(
-          visible: game.selectedCharacter != null,
-          child: FloatingActionButton(
-            child: Icon(game.hasStarted() ? Icons.stop : Icons.play_arrow),
-            onPressed: () {
-              if (game.hasStarted()) {
-                game.end();
-              } else {
-                game.start();
-              }
-            },
+        bottomNavigationBar: BottomAppBar(
+          child: InkWell(
+            onTap: game.selectedCharacter == null
+                ? null
+                : () {
+                    if (game.hasStarted()) {
+                      game.end();
+                    } else {
+                      game.start();
+                    }
+                  },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 10),
+                Icon(
+                  game.hasStarted() ? Icons.stop : Icons.play_arrow,
+                  color: game.selectedCharacter == null
+                      ? Colors.grey
+                      : Colors.black,
+                ),
+                Text(
+                  game.hasStarted() ? 'Finalizar' : 'Empezar',
+                  style: TextStyle(
+                    color: game.selectedCharacter == null
+                        ? Colors.grey
+                        : Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
         body: game.characters.isEmpty
@@ -36,24 +56,6 @@ class CharacterSelection extends StatelessWidget {
                     flex: 2,
                     child: Image(
                         image: AssetImage('lib/assets/wide_text_logo.png')),
-                  ),
-                  Flexible(
-                    child: Column(
-                      children: const [
-                        Text(
-                          'Selecciona tu personaje',
-                          style: TextStyle(
-                            fontSize: 24,
-                          ),
-                        ),
-                        Text(
-                          '(Mantén pulsado para ampliar)',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                   Flexible(
                     flex: 8,
@@ -72,6 +74,25 @@ class CharacterSelection extends StatelessWidget {
                             .pushNamed(CharacterDetail.routeName);
                       },
                       focusedCharacter: game.selectedCharacter,
+                    ),
+                  ),
+                  Visibility(
+                    visible: !game.hasStarted(),
+                    child: Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            'Selecciona tu personaje',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Text(
+                            '(Mantén pulsado para ampliar)',
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
