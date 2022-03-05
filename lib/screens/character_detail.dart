@@ -5,8 +5,11 @@ import 'package:provider/provider.dart';
 
 class CharacterDetail extends StatelessWidget {
   static const routeName = 'character-details';
+  final String? _heroTag;
 
-  const CharacterDetail({Key? key}) : super(key: key);
+  const CharacterDetail({Key? key, String? heroTag})
+      : _heroTag = heroTag,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class CharacterDetail extends StatelessWidget {
                   Expanded(
                     flex: 8,
                     child: Hero(
-                      tag: game.focusedCharacter as String,
+                      tag: _heroTag ?? game.focusedCharacter as String,
                       child: Image(
                           image: AssetImage(
                               "lib/assets/characters/${game.focusedCharacter}.png")),

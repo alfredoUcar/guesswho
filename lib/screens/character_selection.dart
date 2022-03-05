@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guesswho/screens/selected_character_detail.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:guesswho/widgets/game_characters.dart';
 import 'package:provider/provider.dart';
@@ -24,17 +25,27 @@ class CharacterSelection extends StatelessWidget {
                       size: 60,
                       color: Colors.grey.shade700,
                     )
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(300),
-                      child: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade700,
-                        ),
-                        child: Image(
-                          height: 50,
-                          image: AssetImage(
-                              "lib/assets/characters/${game.selectedCharacter}.png"),
+                  : InkWell(
+                      onTap: () {
+                        game.focusedCharacter = game.selectedCharacter;
+                        Navigator.of(context)
+                            .pushNamed(SelectedCharacterDetail.routeName);
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(300),
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade700,
+                          ),
+                          child: Hero(
+                            tag: 'selected-character-zoom',
+                            child: Image(
+                              height: 50,
+                              image: AssetImage(
+                                  "lib/assets/characters/${game.selectedCharacter}.png"),
+                            ),
+                          ),
                         ),
                       ),
                     ),
