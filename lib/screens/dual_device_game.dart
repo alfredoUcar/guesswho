@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
+import 'package:guesswho/widgets/character_selection_help.dart';
+import 'package:guesswho/widgets/dual_device_turn_help.dart';
 import 'package:guesswho/widgets/game_characters.dart';
 import 'package:guesswho/widgets/selected_character_miniature.dart';
 import 'package:guesswho/widgets/selected_character_placeholder.dart';
@@ -92,39 +94,8 @@ class DualDeviceGame extends StatelessWidget {
                       discarded: game.discardedCharacters,
                     ),
                   ),
-                  Visibility(
-                    visible: !game.hasStarted(),
-                    child: Flexible(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            'Selecciona tu personaje',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
-                            '(Mantén pulsado para ampliar)',
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: game.hasStarted(),
-                    child: Flexible(
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: const Text(
-                          'Intercambia preguntas de "sí o no" y descarta personajes hasta adivinar el del otro jugador',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const CharacterSelectionHelp(),
+                  const DualDeviceTurnHelp(),
                 ],
               ),
       ),
