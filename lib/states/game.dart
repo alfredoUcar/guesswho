@@ -8,6 +8,7 @@ enum DeviceMode { single, multi }
 class Game extends ChangeNotifier {
   DeviceMode? _mode;
   List<String> _characters = [];
+  final List<String> _discardedCharacters = [];
   String? _selectedCharacter;
   String? _focusedCharacter;
   bool _started = false;
@@ -17,6 +18,17 @@ class Game extends ChangeNotifier {
       _characters = value;
       notifyListeners();
     });
+  }
+
+  List<String> get discardedCharacters => _discardedCharacters;
+
+  void toggleCharacter(String name) {
+    if (_discardedCharacters.contains(name)) {
+      _discardedCharacters.remove(name);
+    } else {
+      _discardedCharacters.add(name);
+    }
+    notifyListeners();
   }
 
   void start() {
@@ -31,6 +43,7 @@ class Game extends ChangeNotifier {
     _started = false;
     _selectedCharacter = null;
     _focusedCharacter = null;
+    _discardedCharacters.clear();
     notifyListeners();
   }
 

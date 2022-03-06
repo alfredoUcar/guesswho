@@ -98,10 +98,14 @@ class CharacterSelection extends StatelessWidget {
                     child: GameCharacters(
                       names: game.characters,
                       onTap: (String name) {
-                        if (name == game.selectedCharacter) {
-                          game.selectedCharacter = null;
+                        if (!game.hasStarted()) {
+                          if (name == game.selectedCharacter) {
+                            game.selectedCharacter = null;
+                          } else {
+                            game.selectedCharacter = name;
+                          }
                         } else {
-                          game.selectedCharacter = name;
+                          game.toggleCharacter(name);
                         }
                       },
                       onLongPress: (String name) {
@@ -109,7 +113,9 @@ class CharacterSelection extends StatelessWidget {
                         Navigator.of(context)
                             .pushNamed(CharacterDetail.routeName);
                       },
-                      focusedCharacter: game.selectedCharacter,
+                      focusedCharacter:
+                          game.hasStarted() ? null : game.selectedCharacter,
+                      discarded: game.discardedCharacters,
                     ),
                   ),
                   Visibility(

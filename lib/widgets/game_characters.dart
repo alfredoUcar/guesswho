@@ -4,12 +4,14 @@ class GameCharacters extends StatelessWidget {
   const GameCharacters({
     Key? key,
     required this.names,
+    required this.discarded,
     required this.onTap,
     required this.onLongPress,
     this.focusedCharacter,
   }) : super(key: key);
 
   final List<String> names;
+  final List<String> discarded;
   final void Function(String name) onTap;
   final void Function(String name) onLongPress;
   final String? focusedCharacter;
@@ -50,10 +52,7 @@ class GameCharacters extends StatelessWidget {
                         names.elementAt(index),
                         style: TextStyle(
                           fontSize: 16,
-                          foreground: Paint()
-                            ..color = names.elementAt(index) == focusedCharacter
-                                ? Colors.yellow
-                                : Colors.white,
+                          foreground: Paint()..color = getNameColor(index),
                         ),
                       ),
                     ],
@@ -82,5 +81,18 @@ class GameCharacters extends StatelessWidget {
             );
           })),
     );
+  }
+
+  Color getNameColor(int index) {
+    var name = names.elementAt(index);
+    if (name == focusedCharacter) {
+      return Colors.yellow;
+    }
+
+    if (discarded.contains(name)) {
+      return Colors.red;
+    }
+
+    return Colors.white;
   }
 }

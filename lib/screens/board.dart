@@ -43,6 +43,7 @@ class _BoardState extends State<Board> {
                       names: names,
                       onTap: (String name) {},
                       onLongPress: (String name) {},
+                      discarded: const [],
                     ),
                   ),
                 ],
