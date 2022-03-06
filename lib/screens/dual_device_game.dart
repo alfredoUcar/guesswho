@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:guesswho/screens/selected_character_detail.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:guesswho/widgets/game_characters.dart';
+import 'package:guesswho/widgets/selected_character_miniature.dart';
 import 'package:guesswho/widgets/selected_character_placeholder.dart';
 import 'package:provider/provider.dart';
 
@@ -22,36 +22,7 @@ class DualDeviceGame extends StatelessWidget {
             children: [
               game.selectedCharacter == null
                   ? const SelectedCharacterPlaceholder()
-                  : InkWell(
-                      onTap: () {
-                        game.focusedCharacter = game.selectedCharacter;
-                        Navigator.of(context)
-                            .pushNamed(SelectedCharacterDetail.routeName);
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(300),
-                            child: Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade700,
-                              ),
-                              child: Hero(
-                                tag: 'selected-character-zoom',
-                                child: Image(
-                                  height: 20,
-                                  image: AssetImage(
-                                      "lib/assets/characters/${game.selectedCharacter}.png"),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Text(game.selectedCharacter as String),
-                        ],
-                      ),
-                    ),
+                  : const SelectedCharacterMiniature(),
               InkWell(
                 onTap: game.selectedCharacter == null
                     ? null
