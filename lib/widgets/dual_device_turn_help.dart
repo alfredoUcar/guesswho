@@ -13,6 +13,7 @@ class DualDeviceTurnHelp extends StatelessWidget {
       return Visibility(
         visible: game.hasStarted(),
         child: Flexible(
+          flex: 2,
           child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 10),
