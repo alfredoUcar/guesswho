@@ -3,9 +3,11 @@ import 'package:guesswho/states/game.dart';
 import 'package:guesswho/widgets/board.dart';
 import 'package:guesswho/widgets/character_selection_help.dart';
 import 'package:guesswho/widgets/dual_device_turn_help.dart';
+import 'package:guesswho/widgets/end_button.dart';
 import 'package:guesswho/widgets/logo.dart';
 import 'package:guesswho/widgets/selected_character_miniature.dart';
 import 'package:guesswho/widgets/selected_character_placeholder.dart';
+import 'package:guesswho/widgets/start_button.dart';
 import 'package:provider/provider.dart';
 
 class DualDeviceGame extends StatelessWidget {
@@ -24,38 +26,7 @@ class DualDeviceGame extends StatelessWidget {
               game.selectedCharacter == null
                   ? const SelectedCharacterPlaceholder()
                   : const SelectedCharacterMiniature(),
-              InkWell(
-                onTap: game.selectedCharacter == null
-                    ? null
-                    : () {
-                        if (game.hasStarted()) {
-                          game.end();
-                        } else {
-                          game.start();
-                        }
-                      },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(height: 10),
-                    Icon(
-                      game.hasStarted() ? Icons.stop : Icons.play_arrow,
-                      color: game.selectedCharacter == null
-                          ? Colors.grey
-                          : Colors.black,
-                    ),
-                    Text(
-                      game.hasStarted() ? 'Finalizar' : 'Empezar',
-                      style: TextStyle(
-                        color: game.selectedCharacter == null
-                            ? Colors.grey
-                            : Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-              ),
+              game.hasStarted() ? const EndButton() : const StartButton(),
             ],
           ),
         ),
