@@ -66,13 +66,12 @@ class GameCharacters extends StatelessWidget {
                       color: Colors.black,
                     ),
                     borderRadius: BorderRadius.circular(5),
-                    color: names.elementAt(index) == focusedCharacter
-                        ? Colors.grey.shade700
-                        : Colors.white,
+                    color: getBackgroundColor(index),
                   ),
                   child: Hero(
                     tag: names.elementAt(index),
                     child: Image(
+                        color: getImageColor(index),
                         image: AssetImage(
                             "lib/assets/characters/${names.elementAt(index)}.png")),
                   ),
@@ -83,16 +82,35 @@ class GameCharacters extends StatelessWidget {
     );
   }
 
+  Color getBackgroundColor(int index) {
+    var name = names.elementAt(index);
+    if (name == focusedCharacter) {
+      return Colors.grey.shade700;
+    }
+
+    if (discarded.contains(name)) {
+      return Colors.white;
+    }
+
+    return Colors.white;
+  }
+
   Color getNameColor(int index) {
     var name = names.elementAt(index);
     if (name == focusedCharacter) {
       return Colors.yellow;
     }
 
+    return Colors.white;
+  }
+
+  Color? getImageColor(int index) {
+    var name = names.elementAt(index);
+
     if (discarded.contains(name)) {
-      return Colors.red;
+      return Colors.grey;
     }
 
-    return Colors.white;
+    return null;
   }
 }
