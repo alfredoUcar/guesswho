@@ -28,22 +28,28 @@ class DualDeviceGame extends StatelessWidget {
                         Navigator.of(context)
                             .pushNamed(SelectedCharacterDetail.routeName);
                       },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(300),
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade700,
-                          ),
-                          child: Hero(
-                            tag: 'selected-character-zoom',
-                            child: Image(
-                              height: 50,
-                              image: AssetImage(
-                                  "lib/assets/characters/${game.selectedCharacter}.png"),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(300),
+                            child: Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade700,
+                              ),
+                              child: Hero(
+                                tag: 'selected-character-zoom',
+                                child: Image(
+                                  height: 20,
+                                  image: AssetImage(
+                                      "lib/assets/characters/${game.selectedCharacter}.png"),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          Text(game.selectedCharacter as String),
+                        ],
                       ),
                     ),
               InkWell(
