@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
+import 'package:guesswho/widgets/board.dart';
 import 'package:guesswho/widgets/character_selection_help.dart';
 import 'package:guesswho/widgets/dual_device_turn_help.dart';
-import 'package:guesswho/widgets/game_characters.dart';
+import 'package:guesswho/widgets/logo.dart';
 import 'package:guesswho/widgets/selected_character_miniature.dart';
 import 'package:guesswho/widgets/selected_character_placeholder.dart';
 import 'package:provider/provider.dart';
-
-import 'character_detail.dart';
 
 class DualDeviceGame extends StatelessWidget {
   static const routeName = 'character-selection';
@@ -63,39 +62,11 @@ class DualDeviceGame extends StatelessWidget {
         body: game.characters.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : Column(
-                children: [
-                  const Flexible(
-                    flex: 1,
-                    child: Image(
-                        image: AssetImage('lib/assets/wide_text_logo.png')),
-                  ),
-                  Flexible(
-                    flex: 10,
-                    child: GameCharacters(
-                      names: game.characters,
-                      onTap: (String name) {
-                        if (!game.hasStarted()) {
-                          if (name == game.selectedCharacter) {
-                            game.selectedCharacter = null;
-                          } else {
-                            game.selectedCharacter = name;
-                          }
-                        } else {
-                          game.toggleCharacter(name);
-                        }
-                      },
-                      onLongPress: (String name) {
-                        game.focusedCharacter = name;
-                        Navigator.of(context)
-                            .pushNamed(CharacterDetail.routeName);
-                      },
-                      focusedCharacter:
-                          game.hasStarted() ? null : game.selectedCharacter,
-                      discarded: game.discardedCharacters,
-                    ),
-                  ),
-                  const CharacterSelectionHelp(),
-                  const DualDeviceTurnHelp(),
+                children: const [
+                  Logo(),
+                  Board(),
+                  CharacterSelectionHelp(),
+                  DualDeviceTurnHelp(),
                 ],
               ),
       ),
