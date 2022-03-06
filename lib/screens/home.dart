@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:guesswho/screens/character_selection.dart';
+import 'package:guesswho/screens/dual_device_game.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -45,7 +45,7 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           game.mode = DeviceMode.multi;
                           Navigator.of(context)
-                              .pushNamed(CharacterSelection.routeName);
+                              .pushNamed(DualDeviceGame.routeName);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

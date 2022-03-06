@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 import 'character_detail.dart';
 
-class CharacterSelection extends StatelessWidget {
+class DualDeviceGame extends StatelessWidget {
   static const routeName = 'character-selection';
-  const CharacterSelection({Key? key}) : super(key: key);
+  const DualDeviceGame({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

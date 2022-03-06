@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/character_detail.dart';
-import 'package:guesswho/screens/character_selection.dart';
+import 'package:guesswho/screens/dual_device_game.dart';
 import 'package:guesswho/screens/home.dart';
 import 'package:guesswho/screens/selected_character_detail.dart';
 import 'package:guesswho/states/game.dart';
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
         home: const Home(),
         routes: {
           Home.routeName: (context) => const Home(),
-          CharacterSelection.routeName: (context) => const CharacterSelection(),
+          DualDeviceGame.routeName: (context) => const DualDeviceGame(),
           CharacterDetail.routeName: (context) => const CharacterDetail(),
           SelectedCharacterDetail.routeName: (context) =>
               const SelectedCharacterDetail(),
