@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:guesswho/screens/selected_character_detail.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:guesswho/widgets/game_characters.dart';
+import 'package:guesswho/widgets/selected_character_placeholder.dart';
 import 'package:provider/provider.dart';
 
 import 'character_detail.dart';
@@ -20,11 +21,7 @@ class DualDeviceGame extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               game.selectedCharacter == null
-                  ? Icon(
-                      Icons.account_circle,
-                      size: 60,
-                      color: Colors.grey.shade700,
-                    )
+                  ? const SelectedCharacterPlaceholder()
                   : InkWell(
                       onTap: () {
                         game.focusedCharacter = game.selectedCharacter;
