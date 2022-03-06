@@ -89,12 +89,12 @@ class CharacterSelection extends StatelessWidget {
             : Column(
                 children: [
                   const Flexible(
-                    flex: 2,
+                    flex: 1,
                     child: Image(
                         image: AssetImage('lib/assets/wide_text_logo.png')),
                   ),
                   Flexible(
-                    flex: 8,
+                    flex: 10,
                     child: GameCharacters(
                       names: game.characters,
                       onTap: (String name) {
