@@ -68,12 +68,23 @@ class GameCharacters extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                     color: getBackgroundColor(index),
                   ),
-                  child: Hero(
-                    tag: names.elementAt(index),
-                    child: Image(
-                        color: getImageColor(index),
-                        image: AssetImage(
-                            "lib/assets/characters/${names.elementAt(index)}.png")),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Hero(
+                        tag: names.elementAt(index),
+                        child: Image(
+                            color: getImageColor(index),
+                            image: AssetImage(
+                                "lib/assets/characters/${names.elementAt(index)}.png")),
+                      ),
+                      if (discarded.contains(names.elementAt(index)))
+                        const Icon(
+                          Icons.not_interested,
+                          color: Colors.red,
+                          size: 60,
+                        ),
+                    ],
                   ),
                 ),
               ),
@@ -108,7 +119,7 @@ class GameCharacters extends StatelessWidget {
     var name = names.elementAt(index);
 
     if (discarded.contains(name)) {
-      return Colors.grey;
+      return Colors.grey.shade700;
     }
 
     return null;
