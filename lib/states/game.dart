@@ -22,6 +22,25 @@ class Game extends ChangeNotifier {
 
   List<String> get discardedCharacters => _discardedCharacters;
 
+  void sortCharacters() {
+    _characters.sort((String a, String b) {
+      // both visible or discarded
+      if (_discardedCharacters.contains(a) &&
+              _discardedCharacters.contains(b) ||
+          !_discardedCharacters.contains(a) &&
+              !_discardedCharacters.contains(b)) {
+        return a.compareTo(b);
+      } else {
+        if (_discardedCharacters.contains(a)) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+    });
+    notifyListeners();
+  }
+
   void toggleCharacter(String name) {
     if (_discardedCharacters.contains(name)) {
       _discardedCharacters.remove(name);
