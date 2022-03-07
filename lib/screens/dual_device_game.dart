@@ -12,7 +12,7 @@ import 'package:guesswho/widgets/start_button.dart';
 import 'package:provider/provider.dart';
 
 class DualDeviceGame extends StatelessWidget {
-  static const routeName = 'character-selection';
+  static const routeName = 'dual-device-game';
   const DualDeviceGame({Key? key}) : super(key: key);
 
   @override
