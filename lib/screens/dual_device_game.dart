@@ -34,13 +34,15 @@ class DualDeviceGame extends StatelessWidget {
         ),
         body: game.characters.isEmpty
             ? const Center(child: CircularProgressIndicator())
-            : Column(
-                children: const [
-                  Logo(),
-                  Board(),
-                  CharacterSelectionHelp(),
-                  DualDeviceTurnHelp(),
-                ],
+            : SafeArea(
+                child: Column(
+                  children: const [
+                    Logo(),
+                    Board(),
+                    CharacterSelectionHelp(),
+                    DualDeviceTurnHelp(),
+                  ],
+                ),
               ),
       ),
     );
