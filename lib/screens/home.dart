@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/dual_device_game.dart';
+import 'package:guesswho/screens/single_device_game.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,9 @@ class Home extends StatelessWidget {
                     height: 200,
                     child: ElevatedButton(
                         onPressed: () {
-                          game.mode = DeviceMode.single;
+                          game.initialize(DeviceMode.single);
+                          Navigator.of(context)
+                              .pushNamed(SingleDeviceGame.routeName);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -43,7 +46,7 @@ class Home extends StatelessWidget {
                     height: 200,
                     child: ElevatedButton(
                         onPressed: () {
-                          game.mode = DeviceMode.multi;
+                          game.initialize(DeviceMode.multi);
                           Navigator.of(context)
                               .pushNamed(DualDeviceGame.routeName);
                         },

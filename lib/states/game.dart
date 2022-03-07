@@ -4,34 +4,49 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 enum DeviceMode { single, multi }
+enum Turn { player1, player2 }
 
 class Game extends ChangeNotifier {
   DeviceMode? _mode;
-  List<String> _characters = [];
-  final List<String> _discardedCharacters = [];
-  String? _selectedCharacter;
+  Turn _turn = Turn.player1;
+  final Map<Turn, List<String>> _characters = {
+    Turn.player1: [],
+    Turn.player2: [],
+  };
+  final Map<Turn, List<String>> _discardedCharacters = {
+    Turn.player1: [],
+    Turn.player2: [],
+  };
+  final Map<Turn, String?> _selectedCharacter = {
+    Turn.player1: null,
+    Turn.player2: null,
+  };
   String? _focusedCharacter;
   bool _started = false;
 
   Game() {
     getCharactersNames().then((value) {
-      _characters = value;
+      _characters[Turn.player1] = value;
+      _characters[Turn.player2] = value;
       notifyListeners();
     });
   }
 
-  List<String> get discardedCharacters => _discardedCharacters;
+  List<String> get discardedCharacters =>
+      _discardedCharacters[_turn] as List<String>;
+
+  bool isPlayerOneTurn() => _turn == Turn.player1;
 
   void sortCharacters() {
-    _characters.sort((String a, String b) {
+    _characters[_turn]!.sort((String a, String b) {
       // both visible or discarded
-      if (_discardedCharacters.contains(a) &&
-              _discardedCharacters.contains(b) ||
-          !_discardedCharacters.contains(a) &&
-              !_discardedCharacters.contains(b)) {
+      if (_discardedCharacters[_turn]!.contains(a) &&
+              _discardedCharacters[_turn]!.contains(b) ||
+          !_discardedCharacters[_turn]!.contains(a) &&
+              !_discardedCharacters[_turn]!.contains(b)) {
         return a.compareTo(b);
       } else {
-        if (_discardedCharacters.contains(a)) {
+        if (_discardedCharacters[_turn]!.contains(a)) {
           return 1;
         } else {
           return -1;
@@ -42,11 +57,23 @@ class Game extends ChangeNotifier {
   }
 
   void toggleCharacter(String name) {
-    if (_discardedCharacters.contains(name)) {
-      _discardedCharacters.remove(name);
+    if (_discardedCharacters[_turn]!.contains(name)) {
+      _discardedCharacters[_turn]!.remove(name);
     } else {
-      _discardedCharacters.add(name);
+      _discardedCharacters[_turn]!.add(name);
     }
+    notifyListeners();
+  }
+
+  void initialize(DeviceMode mode) {
+    _mode = mode;
+    _turn = Turn.player1;
+    _started = false;
+    _selectedCharacter[Turn.player1] = null;
+    _selectedCharacter[Turn.player2] = null;
+    _focusedCharacter = null;
+    _discardedCharacters[Turn.player1]!.clear();
+    _discardedCharacters[Turn.player2]!.clear();
     notifyListeners();
   }
 
@@ -59,29 +86,18 @@ class Game extends ChangeNotifier {
   bool hasStarted() => _started;
 
   void end() {
-    _started = false;
-    _selectedCharacter = null;
-    _focusedCharacter = null;
-    _discardedCharacters.clear();
-    notifyListeners();
+    initialize(_mode as DeviceMode);
   }
 
-  List<String> get characters => _characters;
+  List<String> get characters => _characters[_turn] as List<String>;
 
-  DeviceMode? get mode => _mode;
+  DeviceMode? mode() => _mode;
 
-  set mode(DeviceMode? mode) {
-    if (mode != _mode) {
-      _mode = mode;
-      notifyListeners();
-    }
-  }
-
-  String? get selectedCharacter => _selectedCharacter;
+  String? get selectedCharacter => _selectedCharacter[_turn];
 
   set selectedCharacter(String? name) {
-    if (_selectedCharacter != name) {
-      _selectedCharacter = name;
+    if (_selectedCharacter[_turn] != name) {
+      _selectedCharacter[_turn] = name;
       notifyListeners();
     }
   }

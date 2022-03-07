@@ -3,6 +3,7 @@ import 'package:guesswho/screens/character_detail.dart';
 import 'package:guesswho/screens/dual_device_game.dart';
 import 'package:guesswho/screens/home.dart';
 import 'package:guesswho/screens/selected_character_detail.dart';
+import 'package:guesswho/screens/single_device_game.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +26,7 @@ class App extends StatelessWidget {
         routes: {
           Home.routeName: (context) => const Home(),
           DualDeviceGame.routeName: (context) => const DualDeviceGame(),
+          SingleDeviceGame.routeName: (context) => const SingleDeviceGame(),
           CharacterDetail.routeName: (context) => const CharacterDetail(),
           SelectedCharacterDetail.routeName: (context) =>
               const SelectedCharacterDetail(),
