@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:guesswho/widgets/board.dart';
 import 'package:guesswho/widgets/character_selection_help.dart';
+import 'package:guesswho/widgets/done_button.dart';
 import 'package:guesswho/widgets/dual_device_turn_help.dart';
 import 'package:guesswho/widgets/end_button.dart';
+import 'package:guesswho/widgets/end_turn_button.dart';
 import 'package:guesswho/widgets/logo.dart';
 import 'package:guesswho/widgets/selected_character_miniature.dart';
 import 'package:guesswho/widgets/selected_character_placeholder.dart';
@@ -27,8 +29,18 @@ class SingleDeviceGame extends StatelessWidget {
               game.selectedCharacter == null
                   ? const SelectedCharacterPlaceholder()
                   : const SelectedCharacterMiniature(),
-              game.hasStarted() ? const EndButton() : const StartButton(),
-              if (game.hasStarted()) const SortButton(),
+              if (game.hasStarted())
+                const EndButton()
+              else if (game.mode() == DeviceMode.multi)
+                const StartButton()
+              else if (game.isPlayerOneTurn())
+                const DoneButton()
+              else
+                const StartButton(),
+              if (game.hasStarted() && game.mode() == DeviceMode.multi)
+                const SortButton(),
+              if (game.hasStarted() && game.mode() == DeviceMode.single)
+                const EndTurnButton(),
             ],
           ),
         ),

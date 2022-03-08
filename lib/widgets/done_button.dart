@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
-class StartButton extends StatelessWidget {
-  const StartButton({Key? key}) : super(key: key);
+class DoneButton extends StatelessWidget {
+  const DoneButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,23 +12,25 @@ class StartButton extends StatelessWidget {
         onTap: game.selectedCharacter == null
             ? null
             : () {
-                if (game.mode() == DeviceMode.single) {
+                if (game.hasStarted()) {
                   // TODO: navigate to transition page
-                  game.endTurn();
+                } else if (!game.isPlayerOneTurn()) {
+                  // TODO: navigate to transition page
+                  game.start();
                 }
-                game.start();
+                game.endTurn();
               },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 10),
             Icon(
-              Icons.play_arrow,
+              Icons.done_outline,
               color:
                   game.selectedCharacter == null ? Colors.grey : Colors.black,
             ),
             Text(
-              'Empezar',
+              'Hecho',
               style: TextStyle(
                 color:
                     game.selectedCharacter == null ? Colors.grey : Colors.black,

@@ -38,6 +38,11 @@ class Game extends ChangeNotifier {
   bool isPlayerOneTurn() => _turn == Turn.player1;
 
   void sortCharacters() {
+    _sortCharacters();
+    notifyListeners();
+  }
+
+  void _sortCharacters() {
     _characters[_turn]!.sort((String a, String b) {
       // both visible or discarded
       if (_discardedCharacters[_turn]!.contains(a) &&
@@ -53,7 +58,6 @@ class Game extends ChangeNotifier {
         }
       }
     });
-    notifyListeners();
   }
 
   void toggleCharacter(String name) {
@@ -87,6 +91,17 @@ class Game extends ChangeNotifier {
 
   void end() {
     initialize(_mode as DeviceMode);
+  }
+
+  void endTurn() {
+    if (isPlayerOneTurn()) {
+      _turn = Turn.player2;
+    } else {
+      _turn = Turn.player1;
+    }
+
+    _sortCharacters();
+    notifyListeners();
   }
 
   List<String> get characters => _characters[_turn] as List<String>;

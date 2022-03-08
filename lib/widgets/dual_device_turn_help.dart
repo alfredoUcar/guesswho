@@ -10,6 +10,15 @@ class DualDeviceTurnHelp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Game>(builder: (context, game, child) {
+      var text =
+          'Realiza una pregunta al otro jugador sobre su personaje o intenta adivinarlo';
+      if (game.mode() == DeviceMode.single) {
+        if (game.isPlayerOneTurn()) {
+          text = 'Jugador 1:\n ${text.toLowerCase()}';
+        } else {
+          text = 'Jugador 2:\n ${text.toLowerCase()}';
+        }
+      }
       return Visibility(
         visible: game.hasStarted(),
         child: Flexible(
@@ -17,10 +26,10 @@ class DualDeviceTurnHelp extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: const Text(
-              'Intercambia preguntas de "sí o no" y descarta personajes hasta adivinar el del otro jugador',
+            child: Text(
+              text,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ),

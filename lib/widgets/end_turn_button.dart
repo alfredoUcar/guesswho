@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
-class EndButton extends StatelessWidget {
-  const EndButton({Key? key}) : super(key: key);
+class EndTurnButton extends StatelessWidget {
+  const EndTurnButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,18 +12,19 @@ class EndButton extends StatelessWidget {
         onTap: game.selectedCharacter == null
             ? null
             : () {
-                game.end();
+                // TODO: navigate to transition page
+                game.endTurn();
               },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: const [
             SizedBox(height: 10),
             Icon(
-              Icons.sports_score,
+              Icons.navigate_next,
               color: Colors.black,
             ),
             Text(
-              'Finalizar partida',
+              'Finalizar turno',
               style: TextStyle(
                 color: Colors.black,
               ),
