@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guesswho/screens/next_player.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -13,8 +14,9 @@ class StartButton extends StatelessWidget {
             ? null
             : () {
                 if (game.mode() == DeviceMode.single) {
-                  // TODO: navigate to transition page
-                  game.endTurn();
+                  Navigator.of(context)
+                      .pushReplacementNamed(NextPlayer.routeName)
+                      .then((value) => game.endTurn());
                 }
                 game.start();
               },

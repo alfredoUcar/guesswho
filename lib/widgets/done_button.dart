@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guesswho/screens/next_player.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -13,9 +14,11 @@ class DoneButton extends StatelessWidget {
             ? null
             : () {
                 if (game.hasStarted()) {
-                  // TODO: navigate to transition page
+                  Navigator.of(context)
+                      .pushReplacementNamed(NextPlayer.routeName);
                 } else if (!game.isPlayerOneTurn()) {
-                  // TODO: navigate to transition page
+                  Navigator.of(context)
+                      .pushReplacementNamed(NextPlayer.routeName);
                   game.start();
                 }
                 game.endTurn();
