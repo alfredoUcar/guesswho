@@ -8,28 +8,31 @@ class EndTurnButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pushReplacementNamed(NextPlayer.routeName).then(
-            (value) => Provider.of<Game>(context, listen: false).endTurn());
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          SizedBox(height: 10),
-          Icon(
-            Icons.navigate_next,
-            color: Colors.black,
-          ),
-          Text(
-            'Finalizar turno',
-            style: TextStyle(
+    return Consumer<Game>(builder: (context, game, child) {
+      return InkWell(
+        onTap: () {
+          Navigator.of(context)
+              .pushReplacementNamed(NextPlayer.routeName)
+              .then((value) => game.endTurn());
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            SizedBox(height: 10),
+            Icon(
+              Icons.navigate_next,
               color: Colors.black,
             ),
-          ),
-          SizedBox(height: 10),
-        ],
-      ),
-    );
+            Text(
+              'Finalizar turno',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      );
+    });
   }
 }

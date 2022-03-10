@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 enum DeviceMode { single, multi }
+enum DisplayMode { grid, list }
 enum Turn { player1, player2 }
 
 class Game extends ChangeNotifier {
@@ -21,8 +22,20 @@ class Game extends ChangeNotifier {
     Turn.player1: null,
     Turn.player2: null,
   };
+  final Map<Turn, DisplayMode> _displayMode = {
+    Turn.player1: DisplayMode.grid,
+    Turn.player2: DisplayMode.grid,
+  };
   String? _focusedCharacter;
   bool _started = false;
+
+  DisplayMode get displayMode => _displayMode[_turn] as DisplayMode;
+  set displayMode(DisplayMode mode) {
+    if (_displayMode[_turn] != mode) {
+      _displayMode[_turn] = mode;
+      notifyListeners();
+    }
+  }
 
   Game() {
     getCharactersNames().then((value) {

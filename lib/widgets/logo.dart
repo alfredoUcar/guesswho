@@ -8,7 +8,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Flexible(
-      flex: 1,
+      flex: 2,
       child: Image(image: AssetImage('lib/assets/wide_text_logo.png')),
     );
   }

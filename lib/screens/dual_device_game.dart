@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:guesswho/widgets/board.dart';
 import 'package:guesswho/widgets/character_selection_help.dart';
+import 'package:guesswho/widgets/display_mode_button.dart';
 import 'package:guesswho/widgets/dual_device_turn_help.dart';
 import 'package:guesswho/widgets/end_button.dart';
 import 'package:guesswho/widgets/logo.dart';
@@ -38,6 +39,7 @@ class DualDeviceGame extends StatelessWidget {
                 child: Column(
                   children: const [
                     Logo(),
+                    DisplayModeButton(),
                     Board(),
                     CharacterSelectionHelp(),
                     DualDeviceTurnHelp(),
