@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
+import 'discarded_character_icon.dart';
+
 class GameCharacters extends StatelessWidget {
   const GameCharacters({
     Key? key,
@@ -85,11 +87,7 @@ class GameCharacters extends StatelessWidget {
                                     "lib/assets/characters/${names.elementAt(index)}.png")),
                           ),
                           if (discarded.contains(names.elementAt(index)))
-                            const Icon(
-                              Icons.not_interested,
-                              color: Colors.red,
-                              size: 60,
-                            ),
+                            const DiscardedCharacterIcon(),
                         ],
                       ),
                     ),
