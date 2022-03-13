@@ -8,6 +8,7 @@ import 'package:guesswho/widgets/dual_device_turn_help.dart';
 import 'package:guesswho/widgets/end_button.dart';
 import 'package:guesswho/widgets/end_turn_button.dart';
 import 'package:guesswho/widgets/logo.dart';
+import 'package:guesswho/widgets/random_character_button.dart';
 import 'package:guesswho/widgets/selected_character_miniature.dart';
 import 'package:guesswho/widgets/selected_character_placeholder.dart';
 import 'package:guesswho/widgets/sort_button.dart';
@@ -30,6 +31,7 @@ class SingleDeviceGame extends StatelessWidget {
               game.selectedCharacter == null
                   ? const SelectedCharacterPlaceholder()
                   : const SelectedCharacterMiniature(),
+              const RandomCharacterButton(),
               if (game.hasStarted())
                 const EndButton()
               else if (game.mode() == DeviceMode.multi)
