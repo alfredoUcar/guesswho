@@ -18,7 +18,7 @@ class _DiscardedCharacterIconState extends State<DiscardedCharacterIcon>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 200),
       vsync: this,
     );
     _iconSize = TweenSequence(
@@ -40,6 +40,7 @@ class _DiscardedCharacterIconState extends State<DiscardedCharacterIcon>
 
   @override
   void dispose() {
+    _animationController.dispose();
     super.dispose();
   }
 
