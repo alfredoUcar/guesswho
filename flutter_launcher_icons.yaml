@@ -1,0 +1,7 @@
+# Regenerate icons running `flutter pub run flutter_launcher_icons:main`
+# see: https://pub.dev/packages/flutter_launcher_icons
+
+flutter_icons:
+  android: true
+  ios: false
+  image_path: "lib/assets/icon.png"
