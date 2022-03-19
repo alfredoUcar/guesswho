@@ -40,7 +40,6 @@ class DualDeviceGame extends StatelessWidget {
             : SafeArea(
                 child: Column(
                   children: const [
-                    Logo(),
                     DisplayModeButton(),
                     Board(),
                     CharacterSelectionHelp(),
