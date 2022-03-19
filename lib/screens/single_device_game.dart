@@ -31,7 +31,7 @@ class SingleDeviceGame extends StatelessWidget {
               game.selectedCharacter == null
                   ? const SelectedCharacterPlaceholder()
                   : const SelectedCharacterMiniature(),
-              const RandomCharacterButton(),
+              if (game.selectedCharacter == null) const RandomCharacterButton(),
               if (game.hasStarted())
                 const EndButton()
               else if (game.mode() == DeviceMode.multi)
