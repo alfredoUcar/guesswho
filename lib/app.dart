@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/character_detail.dart';
 import 'package:guesswho/screens/dual_device_game.dart';
@@ -8,8 +10,20 @@ import 'package:guesswho/screens/single_device_game.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class App {
+  static Future<void> init() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    await FirebaseAnalytics.instance.logAppOpen();
+  }
+
+  static Widget create() {
+    return const Guesswho();
+  }
+}
+
+class Guesswho extends StatelessWidget {
+  const Guesswho({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +37,9 @@ class App extends StatelessWidget {
             colorScheme: Theme.of(context).colorScheme.copyWith(
                   primary: Colors.purple.shade600,
                 )),
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)
+        ],
         home: const Home(),
         routes: {
           Home.routeName: (context) => const Home(),
