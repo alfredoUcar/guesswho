@@ -29,7 +29,7 @@ class DualDeviceGame extends StatelessWidget {
               game.selectedCharacter == null
                   ? const SelectedCharacterPlaceholder()
                   : const SelectedCharacterMiniature(),
-              if (game.selectedCharacter == null) const RandomCharacterButton(),
+              if (!game.hasStarted()) const RandomCharacterButton(),
               game.hasStarted() ? const EndButton() : const StartButton(),
               if (game.hasStarted()) const SortButton(),
             ],
