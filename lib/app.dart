@@ -1,5 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/character_detail.dart';
 import 'package:guesswho/screens/dual_device_game.dart';
@@ -15,6 +17,20 @@ class App {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     await FirebaseAnalytics.instance.logAppOpen();
+    FirebaseAuth.instance.userChanges().listen((User? user) {
+      if (user == null) {
+        FirebaseAnalytics.instance.logEvent(name: 'sign_out');
+      } else {
+        FirebaseAnalytics.instance.setUserId(id: user.uid);
+        FirebaseAnalytics.instance.logLogin(loginMethod: 'anonymously');
+      }
+    });
+
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } catch (e) {
+      FirebaseCrashlytics.instance.log(e.toString());
+    }
   }
 
   static Widget create() {
