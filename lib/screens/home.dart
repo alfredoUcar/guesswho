@@ -78,6 +78,22 @@ class Home extends StatelessWidget {
                   ),
                 ],
               ),
+              if (game.hasStarted())
+                ElevatedButton(
+                    onPressed: () {
+                      FirebaseAnalytics.instance.logEvent(
+                        name: "resume_game",
+                        parameters: {"mode": game.mode().toString()},
+                      );
+                      if (game.mode() == DeviceMode.single) {
+                        Navigator.of(context)
+                            .pushNamed(SingleDeviceGame.routeName);
+                      } else {
+                        Navigator.of(context)
+                            .pushNamed(DualDeviceGame.routeName);
+                      }
+                    },
+                    child: const Text('Continuar partida')),
             ],
           ),
         ),
