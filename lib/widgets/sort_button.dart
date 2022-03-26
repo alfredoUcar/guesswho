@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,9 @@ class SortButton extends StatelessWidget {
         onTap: game.selectedCharacter == null
             ? null
             : () {
+                FirebaseAnalytics.instance.logEvent(
+                  name: "sort_characters",
+                );
                 game.sortCharacters();
               },
         child: Column(

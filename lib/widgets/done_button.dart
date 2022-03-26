@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/next_player.dart';
 import 'package:guesswho/states/game.dart';
@@ -13,14 +14,15 @@ class DoneButton extends StatelessWidget {
         onTap: game.selectedCharacter == null
             ? null
             : () {
-                if (game.hasStarted()) {
-                  Navigator.of(context)
-                      .pushReplacementNamed(NextPlayer.routeName);
-                } else if (!game.isPlayerOneTurn()) {
-                  Navigator.of(context)
-                      .pushReplacementNamed(NextPlayer.routeName);
-                  game.start();
-                }
+                FirebaseAnalytics.instance.logEvent(
+                  name: "character_confirmed",
+                  parameters: {
+                    "mode": game.mode() == DeviceMode.single
+                        ? 'single_device'
+                        : 'multiple_device',
+                    "name": game.selectedCharacter,
+                  },
+                );
                 game.endTurn();
               },
         child: Column(

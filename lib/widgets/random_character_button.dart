@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,12 @@ class RandomCharacterButton extends StatelessWidget {
     return Consumer<Game>(builder: (context, game, child) {
       return InkWell(
         onTap: () {
+          FirebaseAnalytics.instance.logEvent(
+            name: "select_random_character",
+            parameters: {
+              "previous": game.selectedCharacter,
+            },
+          );
           var randomIndex = Random().nextInt(game.characters.length - 1);
           game.selectedCharacter = game.characters.elementAt(randomIndex);
         },

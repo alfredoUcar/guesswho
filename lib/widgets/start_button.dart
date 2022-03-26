@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/next_player.dart';
 import 'package:guesswho/states/game.dart';
@@ -13,6 +14,23 @@ class StartButton extends StatelessWidget {
         onTap: game.selectedCharacter == null
             ? null
             : () {
+                FirebaseAnalytics.instance.logEvent(
+                  name: "start_questions_rounds",
+                  parameters: {
+                    "mode": game.mode() == DeviceMode.single
+                        ? "single_device"
+                        : "multiple_device",
+                  },
+                );
+                FirebaseAnalytics.instance.logEvent(
+                  name: "character_confirmed",
+                  parameters: {
+                    "mode": game.mode() == DeviceMode.single
+                        ? 'single_device'
+                        : 'multiple_device',
+                    "name": game.selectedCharacter,
+                  },
+                );
                 if (game.mode() == DeviceMode.single) {
                   Navigator.of(context)
                       .pushReplacementNamed(NextPlayer.routeName)

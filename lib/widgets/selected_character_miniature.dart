@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/selected_character_detail.dart';
 import 'package:guesswho/states/game.dart';
@@ -13,6 +14,13 @@ class SelectedCharacterMiniature extends StatelessWidget {
     return Consumer<Game>(builder: (context, game, child) {
       return InkWell(
         onTap: () {
+          FirebaseAnalytics.instance.logEvent(
+            name: "zoom_character",
+            parameters: {
+              "source": "miniature",
+              "name": game.selectedCharacter,
+            },
+          );
           game.focusedCharacter = game.selectedCharacter;
           Navigator.of(context).pushNamed(SelectedCharacterDetail.routeName);
         },

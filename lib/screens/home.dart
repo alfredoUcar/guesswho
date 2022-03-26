@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/dual_device_game.dart';
 import 'package:guesswho/screens/single_device_game.dart';
@@ -24,6 +25,10 @@ class Home extends StatelessWidget {
                     height: 200,
                     child: ElevatedButton(
                         onPressed: () {
+                          FirebaseAnalytics.instance.logEvent(
+                            name: "start_game",
+                            parameters: {"mode": "single_device"},
+                          );
                           game.initialize(DeviceMode.single);
                           Navigator.of(context)
                               .pushNamed(SingleDeviceGame.routeName);
@@ -46,6 +51,10 @@ class Home extends StatelessWidget {
                     height: 200,
                     child: ElevatedButton(
                         onPressed: () {
+                          FirebaseAnalytics.instance.logEvent(
+                            name: "start_game",
+                            parameters: {"mode": "multiple_device"},
+                          );
                           game.initialize(DeviceMode.multi);
                           Navigator.of(context)
                               .pushNamed(DualDeviceGame.routeName);

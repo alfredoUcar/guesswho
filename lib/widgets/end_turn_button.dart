@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/next_player.dart';
 import 'package:guesswho/states/game.dart';
@@ -11,6 +12,15 @@ class EndTurnButton extends StatelessWidget {
     return Consumer<Game>(builder: (context, game, child) {
       return InkWell(
         onTap: () {
+          FirebaseAnalytics.instance.logEvent(
+            name: "end_turn",
+            parameters: {
+              "mode": game.mode() == DeviceMode.single
+                  ? 'single_device'
+                  : 'multiple_device',
+              "layout": game.displayMode.toString(),
+            },
+          );
           Navigator.of(context)
               .pushReplacementNamed(NextPlayer.routeName)
               .then((value) => game.endTurn());
