@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guesswho/screens/single_device_game.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
@@ -21,9 +22,9 @@ class NextPlayer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Image(image: AssetImage('lib/assets/wide_text_logo.png')),
-                const Text(
-                  'Turno del otro jugador',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.nextPlayer,
+                  style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -33,7 +34,7 @@ class NextPlayer extends StatelessWidget {
                     Navigator.of(context)
                         .pushReplacementNamed(SingleDeviceGame.routeName);
                   },
-                  child: const Text('Continuar'),
+                  child: Text(AppLocalizations.of(context)!.continueGame),
                 ),
               ],
             ),

@@ -1,3 +1,21 @@
 {
-    "oneDevice": "Un dispositivo"
+    "oneDevice": "Un dispositivo",
+    "twoDevices": "Dos dispositivos",
+    "continueGame": "Continuar partida",
+    "nextPlayer": "Turno del otro jugador",
+    "resume": "Continuar partida",
+    "singlePlayerSelectCharacter": "Selecciona tu personaje",
+    "firstPlayerSelectCharacter": "Selecciona tu personaje Jugador 1",
+    "secondPlayerSelectCharacter": "Selecciona tu personaje Jugador 2",
+    "longPressToZoomIn": "(Mantén pulsado para ampliar)",
+    "done": "Hecho",
+    "dualDeviceTurnHelp": "Realiza una pregunta al otro jugador sobre su personaje o intenta adivinarlo",
+    "player1": "Jugador 1",
+    "player2": "Jugador 2",
+    "endGame": "Finalizar partida",
+    "endTurn": "Finalizar turno",
+    "random": "Aleatorio",
+    "yourCharacter": "Tu personaje",
+    "sort": "Ordenar",
+    "start": "Empezar"
 }

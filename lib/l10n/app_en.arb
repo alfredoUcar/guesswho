@@ -1,3 +1,21 @@
 {
-    "oneDevice": "One device"
+    "oneDevice": "One device",
+    "twoDevices": "Two devices",
+    "continueGame": "Continue game",
+    "nextPlayer": "Next player turn",
+    "resume": "Resume game",
+    "singlePlayerSelectCharacter": "Select your character",
+    "firstPlayerSelectCharacter": "Select your character Player 1",
+    "secondPlayerSelectCharacter": "Select your character Player 2",
+    "longPressToZoomIn": "(Long press to zoom in)",
+    "done": "Done",
+    "dualDeviceTurnHelp": "Ask the other player something about his character or try to guess it",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "endGame": "End game",
+    "endTurn": "End turn",
+    "random": "Random",
+    "yourCharacter": "Your character",
+    "sort": "Sort",
+    "start": "start"
 }

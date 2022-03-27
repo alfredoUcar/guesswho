@@ -5,7 +5,6 @@ import 'package:guesswho/widgets/character_selection_help.dart';
 import 'package:guesswho/widgets/display_mode_button.dart';
 import 'package:guesswho/widgets/dual_device_turn_help.dart';
 import 'package:guesswho/widgets/end_button.dart';
-import 'package:guesswho/widgets/logo.dart';
 import 'package:guesswho/widgets/random_character_button.dart';
 import 'package:guesswho/widgets/selected_character_miniature.dart';
 import 'package:guesswho/widgets/selected_character_placeholder.dart';

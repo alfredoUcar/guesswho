@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -10,13 +11,14 @@ class DualDeviceTurnHelp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Game>(builder: (context, game, child) {
-      var text =
-          'Realiza una pregunta al otro jugador sobre su personaje o intenta adivinarlo';
+      var text = AppLocalizations.of(context)!.dualDeviceTurnHelp;
       if (game.mode() == DeviceMode.single) {
         if (game.isPlayerOneTurn()) {
-          text = 'Jugador 1:\n ${text.toLowerCase()}';
+          text =
+              '${AppLocalizations.of(context)!.player1}:\n ${text.toLowerCase()}';
         } else {
-          text = 'Jugador 2:\n ${text.toLowerCase()}';
+          text =
+              '${AppLocalizations.of(context)!.player2}\n ${text.toLowerCase()}';
         }
       }
       return Visibility(

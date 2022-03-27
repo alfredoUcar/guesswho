@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guesswho/screens/next_player.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
@@ -27,19 +28,19 @@ class EndTurnButton extends StatelessWidget {
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
-            SizedBox(height: 10),
-            Icon(
+          children: [
+            const SizedBox(height: 10),
+            const Icon(
               Icons.navigate_next,
               color: Colors.black,
             ),
             Text(
-              'Finalizar turno',
-              style: TextStyle(
+              AppLocalizations.of(context)!.endTurn,
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
           ],
         ),
       );

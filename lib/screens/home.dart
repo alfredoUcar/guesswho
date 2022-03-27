@@ -64,13 +64,13 @@ class Home extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: const [
-                              Icon(
+                            children: [
+                              const Icon(
                                 Icons.offline_share,
                                 size: 100,
                               ),
                               Text(
-                                'Dos dispositivos',
+                                AppLocalizations.of(context)!.twoDevices,
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -94,7 +94,7 @@ class Home extends StatelessWidget {
                             .pushNamed(DualDeviceGame.routeName);
                       }
                     },
-                    child: const Text('Continuar partida')),
+                    child: Text(AppLocalizations.of(context)!.resume)),
             ],
           ),
         ),

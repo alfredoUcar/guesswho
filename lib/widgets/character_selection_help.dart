@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -10,12 +11,12 @@ class CharacterSelectionHelp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Game>(builder: (context, game, child) {
-      var text = 'Selecciona tu personaje';
+      var text = AppLocalizations.of(context)!.singlePlayerSelectCharacter;
       if (game.mode() == DeviceMode.single) {
         if (game.isPlayerOneTurn()) {
-          text = 'Selecciona tu personaje Jugador 1';
+          text = AppLocalizations.of(context)!.firstPlayerSelectCharacter;
         } else {
-          text = 'Selecciona tu personaje Jugador 2';
+          text = AppLocalizations.of(context)!.secondPlayerSelectCharacter;
         }
       }
       return Visibility(
@@ -27,10 +28,10 @@ class CharacterSelectionHelp extends StatelessWidget {
               Text(
                 text,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              const Text(
-                '(Mantén pulsado para ampliar)',
+              Text(
+                AppLocalizations.of(context)!.longPressToZoomIn,
                 textAlign: TextAlign.center,
               ),
             ],

@@ -1,6 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:guesswho/screens/next_player.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +35,7 @@ class DoneButton extends StatelessWidget {
                   game.selectedCharacter == null ? Colors.grey : Colors.black,
             ),
             Text(
-              'Hecho',
+              AppLocalizations.of(context)!.done,
               style: TextStyle(
                 color:
                     game.selectedCharacter == null ? Colors.grey : Colors.black,

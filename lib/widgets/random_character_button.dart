@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guesswho/states/game.dart';
 import 'package:provider/provider.dart';
 
@@ -25,12 +26,12 @@ class RandomCharacterButton extends StatelessWidget {
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
-            Image(
+          children: [
+            const Image(
               height: 30,
               image: AssetImage("lib/assets/square_logo.png"),
             ),
-            Text('Aleatorio'),
+            Text(AppLocalizations.of(context)!.random),
           ],
         ),
       );

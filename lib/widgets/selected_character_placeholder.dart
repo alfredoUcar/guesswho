@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SelectedCharacterPlaceholder extends StatelessWidget {
   const SelectedCharacterPlaceholder({
@@ -15,7 +16,7 @@ class SelectedCharacterPlaceholder extends StatelessWidget {
           size: 30,
           color: Colors.grey.shade700,
         ),
-        const Text('Tu personaje'),
+        Text(AppLocalizations.of(context)!.yourCharacter),
       ],
     );
   }
