@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:guesswho/screens/character_detail.dart';
 import 'package:guesswho/screens/dual_device_game.dart';
 import 'package:guesswho/screens/home.dart';
@@ -55,6 +57,16 @@ class Guesswho extends StatelessWidget {
                 )),
         navigatorObservers: [
           FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)
+        ],
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('es', ''), // Spanish, no country code
+          Locale('en', ''), // English, no country code
         ],
         home: const Home(),
         routes: {

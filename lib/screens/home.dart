@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:guesswho/screens/dual_device_game.dart';
 import 'package:guesswho/screens/single_device_game.dart';
@@ -37,12 +38,12 @@ class Home extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: const [
-                              Icon(
+                            children: [
+                              const Icon(
                                 Icons.smartphone,
                                 size: 100,
                               ),
-                              Text("Un dispositivo"),
+                              Text(AppLocalizations.of(context)!.oneDevice),
                             ],
                           ),
                         )),
