@@ -3,5 +3,5 @@ import 'package:guesswho/app.dart';
 
 void main() async {
   await App.init();
-  runApp(App.create());
+  runApp(App.create('prod'));
 }

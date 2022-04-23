@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "527798060332",
+    "project_id": "guesswho-38ce1",
+    "storage_bucket": "guesswho-38ce1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527798060332:android:f89b1d48bce477f5675889",
+        "android_client_info": {
+          "package_name": "com.joctastic.guesswho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527798060332-t4t6ehpc9snmaoisjf650054g87h8ru4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_8cZXJN2otMkyfYtyqPLbm3TSRGUsfl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527798060332-t4t6ehpc9snmaoisjf650054g87h8ru4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-7106844252845684~6032887275"
+    }
+  ],
+  "configuration_version": "1"
+}
