@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guesswho/screens/single_device_game.dart';
 import 'package:guesswho/states/game.dart';
+import 'package:guesswho/widgets/ad_banner.dart';
 import 'package:provider/provider.dart';
 
 class NextPlayer extends StatelessWidget {
@@ -22,6 +23,7 @@ class NextPlayer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Image(image: AssetImage('lib/assets/wide_text_logo.png')),
+                const AdBanner(adNameKey: 'switchPlayerPageAdId'),
                 Text(
                   AppLocalizations.of(context)!.nextPlayer,
                   style: const TextStyle(
