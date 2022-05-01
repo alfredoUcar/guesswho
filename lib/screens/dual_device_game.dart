@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guesswho/states/game.dart';
+import 'package:guesswho/widgets/ad_banner.dart';
 import 'package:guesswho/widgets/board.dart';
 import 'package:guesswho/widgets/character_selection_help.dart';
 import 'package:guesswho/widgets/display_mode_button.dart';
@@ -39,6 +40,7 @@ class DualDeviceGame extends StatelessWidget {
             : SafeArea(
                 child: Column(
                   children: const [
+                    AdBanner(adNameKey: 'bannerAdId'),
                     DisplayModeButton(),
                     Board(),
                     CharacterSelectionHelp(),

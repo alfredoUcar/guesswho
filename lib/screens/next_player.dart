@@ -23,7 +23,7 @@ class NextPlayer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Image(image: AssetImage('lib/assets/wide_text_logo.png')),
-                const AdBanner(adNameKey: 'switchPlayerPageAdId'),
+                const AdBanner(adNameKey: 'bannerAdId'),
                 Text(
                   AppLocalizations.of(context)!.nextPlayer,
                   style: const TextStyle(
