@@ -1,6 +1,8 @@
 {
     "oneDevice": "Un dispositivo",
     "twoDevices": "Dos dispositivos",
+    "online": "Online",
+    "notAvailable": "No disponible",
     "continueGame": "Continuar partida",
     "nextPlayer": "Turno del otro jugador",
     "resume": "Continuar partida",

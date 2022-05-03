@@ -1,6 +1,8 @@
 {
     "oneDevice": "One device",
     "twoDevices": "Two devices",
+    "online": "Online",
+    "notAvailable": "Not available",
     "continueGame": "Continue game",
     "nextPlayer": "Next player turn",
     "resume": "Resume game",
