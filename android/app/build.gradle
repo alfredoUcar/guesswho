@@ -73,6 +73,10 @@ android {
             resValue "string", "app_name", "Adivina quién"
         }
     }
+
+    lintOptions {
+       checkReleaseBuilds false
+    }
 }
 
 flutter {
